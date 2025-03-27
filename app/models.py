@@ -1,6 +1,8 @@
 from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='cake/')
+    countProducts = models.IntegerField()
 
     def __str__(self):
         return self.name
@@ -13,7 +15,6 @@ class Cake(models.Model):
     price = models.IntegerField()
     isDiscount = models.IntegerField(null=True, blank=True)
     info_number = models.JSONField(default=list) 
-    isCake = models.BooleanField(default=False)
     
 
     def discounted_price(self):

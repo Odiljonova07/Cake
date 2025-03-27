@@ -5,7 +5,8 @@ from .models import *
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ['name']
+        depth = 1
+        fields = ['id', 'name', 'image', 'countProducts']
 
 
 class CakeSerializer(serializers.ModelSerializer):
@@ -16,7 +17,7 @@ class CakeSerializer(serializers.ModelSerializer):
         depth = 1
         fields = ['name', 'category', 'description', 
                   'price', 'isDiscount', 'info_number', 
-                  'isCake', 'discounted_price'] 
+                  'image', 'discounted_price'] 
 
     def get_discounted_price(self, obj): 
         return obj.discounted_price() if obj.discounted_price() is not None else None 
